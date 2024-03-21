@@ -8,16 +8,24 @@ export const meta: MetaFunction = () => {
 	];
 };
 
-export function loader() {
-	return json({ message: "wowww it worked" });
+// export async function loader() {
+	// return json({ message: "wowww it worked" });
+// }
+// 
+
+export async function loader() {
+	const data = await fetch("https://fakestoreapi.com/products");
+	return json(await data.json());
 }
 
 export default function Index() {
 	const data: any = useLoaderData();
+
+  console.log(data);
 	return (
 		<div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
 			<div>Welcome home</div>
-			<Outlet />
+			<div>Api integration</div>
 		</div>
 	);
 }
