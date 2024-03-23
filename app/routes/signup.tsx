@@ -1,10 +1,17 @@
-import { LoaderFunction } from "@remix-run/node";
-import { Link, useActionData } from "@remix-run/react";
+import { LoaderFunction, redirect } from "@remix-run/node";
+import { Link, Navigate, useActionData } from "@remix-run/react";
 import { useState } from "react";
 import { authenticator } from "~/utils/auth.server";
 import { RegisterUser } from "~/utils/user.server";
 
 export const loader: LoaderFunction = async ({ request }) => {
+	// const navigate = useNavigate();#
+
+	// const user = true;
+	//   if (user) {
+	// throw redirect("/login");
+	// }
+
 	const user = await authenticator.isAuthenticated(request, {
 		successRedirect: "/",
 	});
